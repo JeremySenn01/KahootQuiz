@@ -1,0 +1,22 @@
+li {
+    background-color: rgba(0,102,204, 0.6);
+    margin-bottom: 3px;
+    margin-right: 3px;
+    width: 49%;
+    height: 100px;
+    float: left;
+}
+
+li:hover {
+    box-shadow: 5px 5px 5px lightblue;
+}
+
+.question {
+    background-color: aliceblue;
+    height: 70px;
+    line-height: 40px;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    border: 1px solid grey;
+
+}
