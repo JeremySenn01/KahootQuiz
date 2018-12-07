@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 
+//Comparator
+function compare(a, b) {
+    if (a.score < b.score)
+        return 1;
+    if (a.score > b.score)
+        return -1;
+    return 0;
+}
+
 const host = window.location.hostname;
 
 class PlayerResultScreen extends Component {
@@ -50,7 +59,8 @@ class PlayerResultScreen extends Component {
     render() {
         const playerAnswer = JSON.parse(localStorage.getItem("playerAnswer"));
         const player = JSON.parse(localStorage.getItem("player"));
-        
+        const players = JSON.parse(localStorage.getItem("game")).players;
+
         let answer;
         let bg;
 
@@ -64,10 +74,37 @@ class PlayerResultScreen extends Component {
                 answer = "Wrong";
                 bg = "red";
             }
+
+            //Calculate the rank of the player
+            var rank;
+            var text;
+
+            var playersSorted = players.sort(compare);
+
+            console.log(playersSorted.length);
+
+            for (let i = 0; i < playersSorted.length; i++) {
+
+                if (playersSorted[i].id === player.id) {
+                    if (i === 0) {
+                        rank = 1;
+                        text = "";
+                    }
+                    else {
+                        rank = i + 1;
+                        text = " (You are " + (playersSorted[i - 1].score - player.score) +
+                            " points behind " + playersSorted[i - 1].name + ")";
+                    }
+                }
+            }
+            console.log(rank + " / " + text);
+
         }
         else {
             answer = "Waiting...";
         }
+
+
         return (
             <div className="PlayerResultScreen" style={{ backgroundColor: bg }}>
                 {(!this.state.waiting && this.state.redirectToOptionScreen) && <Redirect to="/playing" />}
@@ -86,11 +123,16 @@ class PlayerResultScreen extends Component {
                         <h1>{answer}</h1>
                     </div>
                 </div>
-                <div className="row">
-                    <div className="col-md-12 text-right">
+                {!this.state.waiting && <div className="row">
+                    <div className="col-md-6 text-left">
+                        Rank: {rank} {text}
+                    </div>
+                    <div className="col-md-6 text-right">
                         Score: {player.score}
                     </div>
+
                 </div>
+                }
             </div>
         );
     }

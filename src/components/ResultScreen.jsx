@@ -80,12 +80,10 @@ class ResultScreen extends Component {
                     </div>
                 </div>
                 <BarChart width={730} height={250} data={data}>
-                    <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" tick={{fill: "black"}}/>
-                    <YAxis tick={{fill: "black"}}/>
+                    <YAxis tick={{fill: "black"}} interval={1}/>
                     <Tooltip />
-                    <Legend />
-                    <Bar dataKey="amount" fill="#8884d8"/>
+                    <Bar dataKey="amount" fill="darkgrey"/>
                 </BarChart>
             </div>
         );

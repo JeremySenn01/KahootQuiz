@@ -39,7 +39,16 @@ class PlayerPodiumScreen extends Component {
 
         return (
             <div className="ResultScreen">
-               <h1> You placed {rank}{superScript}!</h1>
+                <div className="row">
+                    <div className="col-md-12 text-center">
+                        <h1> You placed {rank}{superScript}!</h1>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-md-12 text-center">
+                        <h4> with {yourPlayer.score} points</h4>
+                    </div>
+                </div>
             </div>
         );
     }
