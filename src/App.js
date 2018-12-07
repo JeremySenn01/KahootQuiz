@@ -12,6 +12,9 @@ import PlayerResultScreen from "./components/PlayerResultScreen";
 import RankingScreen from "./components/RankingScreen";
 import PodiumScreen from "./components/PodiumScreen";
 import PlayerPodiumScreen from "./components/PlayerPodiumScreen";
+import EditScreen from "./components/EditScreen";
+
+
 
 import './App.css';
 
@@ -50,7 +53,6 @@ class MainScreen extends Component {
         .then(player => {
           if (worked) {
             localStorage.setItem("player", JSON.stringify(player));
-            console.log("worked");
             this.setState({ redirectToWaitingScreen: true })
           }
         })
@@ -102,6 +104,8 @@ class App extends Component {
           <Route exact path="/ranking" component={RankingScreen} />
           <Route exact path="/podium" component={PodiumScreen} />
           <Route exact path="/playerPodium" component={PlayerPodiumScreen} />
+          <Route exact path="/edit/:quizId" component={EditScreen} />
+
 
         </div>
       </BrowserRouter>

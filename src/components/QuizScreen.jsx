@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 const host = window.location.hostname;
 
@@ -13,7 +13,7 @@ class Quiz extends Component {
     //Start a quiz
     handleStartQuiz = () => {
         //Get a game from Server
-        fetch("http://"+host+":8080/quizbackend/v1/games",
+        fetch("http://" + host + ":8080/quizbackend/v1/games",
             {
                 method: "POST",
                 headers: {
@@ -29,11 +29,6 @@ class Quiz extends Component {
             })
     }
 
-    //Edit a quiz
-    handleEditQuiz = () => {
-
-    }
-
     render() {
         return (
             <div style={{ backgroundColor: "white", marginBottom: "15px", padding: "6px" }}>
@@ -43,7 +38,7 @@ class Quiz extends Component {
                 <br />
                 <button onClick={this.handleStartQuiz} className="btn btn-dark btn-sm">Start</button>
                 &nbsp;
-                <button onClick={this.handleEditQuiz} className="btn btn-dark btn-sm">Edit</button>
+                <Link to={"/edit/" + this.props.quiz.id} className="btn btn-dark btn-sm">Edit</Link>
             </div>
         );
     }
@@ -57,7 +52,7 @@ class QuizScreen extends Component {
     }
 
     componentDidMount() {
-        fetch("http://"+host+":8080/quizbackend/v1/quizzes")
+        fetch("http://" + host + ":8080/quizbackend/v1/quizzes")
             .then(response => response.json())
             .then(quizzes => this.setState({ quizzes }));
     }
