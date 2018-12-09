@@ -13,7 +13,7 @@ import RankingScreen from "./components/RankingScreen";
 import PodiumScreen from "./components/PodiumScreen";
 import PlayerPodiumScreen from "./components/PlayerPodiumScreen";
 import EditScreen from "./components/EditScreen";
-
+import EditQuestionScreen from "./components/EditQuestionScreen";
 
 
 import './App.css';
@@ -105,8 +105,7 @@ class App extends Component {
           <Route exact path="/podium" component={PodiumScreen} />
           <Route exact path="/playerPodium" component={PlayerPodiumScreen} />
           <Route exact path="/edit/:quizId" component={EditScreen} />
-
-
+          <Route exact path="/editQuestion/:questionId" component={EditQuestionScreen} />
         </div>
       </BrowserRouter>
     );

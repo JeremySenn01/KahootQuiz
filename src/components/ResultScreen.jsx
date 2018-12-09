@@ -81,7 +81,7 @@ class ResultScreen extends Component {
                 </div>
                 <BarChart width={730} height={250} data={data}>
                     <XAxis dataKey="name" tick={{fill: "black"}}/>
-                    <YAxis tick={{fill: "black"}} interval={1}/>
+                    <YAxis tick={{fill: "black"}} interval={"1"}/>
                     <Tooltip />
                     <Bar dataKey="amount" fill="darkgrey"/>
                 </BarChart>
